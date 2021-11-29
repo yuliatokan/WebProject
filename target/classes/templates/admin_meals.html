@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Eat&Fit</title>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/message.css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/themify-icons.css">
+    <link rel="stylesheet" href="/static/css/nice-select.css">
+    <link rel="stylesheet" href="/static/css/flaticon.css">
+    <link rel="stylesheet" href="/static/css/gijgo.css">
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/slick.css">
+    <link rel="stylesheet" href="/static/css/slicknav.css">
+    <link rel="stylesheet" href="/static/css/meals.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<header>
+    <div class="header-area ">
+        <div id="sticky-header" class="main-header-area progress-sticky">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-2">
+                        <div class="logo">
+                            <a href="/">
+                                <img class="main-header-logo" src="/static/img/logo_new.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-7">
+                        <div class="main-menu   d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="/" th:text="#{nav.home}">Home</a></li>
+                                    <li><a href="/info/about" th:text="#{nav.about}">About</a></li>
+                                    <li><a href="/info/recipes" th:text="#{nav.recipes}">Recipes</a></li>
+                                    <li hidden name="sign"><a href="/sign/up" th:text="#{nav.sign}">Sign</a></li>
+                                    <li hidden name="user"><a href="#">user<i class="ti-angle-down"></i></a>
+                                        <ul class="submenu">
+                                            <li hidden name="admin"><a href="/admin/products" th:text="#{nav.admin.page}">Admin Page</a></li>
+                                            <li><a href="/user/meals" th:text="#{nav.daily.eating}">Daily Eating</a></li>
+                                            <li><a href="/user/progress" th:text="#{nav.progress}">Progress</a></li>
+                                            <li><a href="/user/water" th:text="#{nav.water}">Water</a></li>
+                                            <li><a href="/user/activity" th:text="#{nav.activity}">Activity</a></li>
+                                            <li><a href="/client/edit" th:text="#{nav.edit}">Edit</a></li>
+                                            <li><a href="/sign/out" th:text="#{nav.logout}">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/info/contact" th:text="#{nav.contact}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                        <div class="search_icon" th:if="${#locale.toString() == 'ru_RU'}">
+                            <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
+                                <i>EN</i>
+                            </a>
+                        </div>
+                        <div class="search_icon" th:if="${#locale.toString() == 'en_US'}">
+                            <a th:href="@{${#httpServletRequest.requestURI}(lang='ru_RU')}">
+                                <i>UA</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- slider_area_start -->
+<div class="slider_area">
+    <div class="single_slider  d-flex slider_bg_4 ">
+        <div class="container main-container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-4 col-md-6">
+                    <form action="/admin/products" method="get">
+                    <div class="input-group">
+                        <input type="text" name="name" class="form-control" placeholder="Search food">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-secondary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="col-xl-7 col-lg-4 col-md-6">
+                    <button type="button" class="mb-3 float-right genric-btn success-border circle btn-del"
+                            data-toggle="modal" data-target="#addModal" th:text="#{ml.btn.add.food}">
+                    </button>
+                </div>
+            </div>
+            <table class="table" style="background-color: whitesmoke">
+                <thead>
+                <tr>
+                    <th scope="col" th:text="#{ml.name}">Name</th>
+                    <th scope="col" th:text="#{ml.calories}">Calories</th>
+                    <th scope="col" th:text="#{ml.protein}">Protein</th>
+                    <th scope="col" th:text="#{ml.fats}">Fats</th>
+                    <th scope="col" th:text="#{ml.carbohydrates}">Carbohydrates</th>
+                </tr>
+                </thead>
+                <tbody class="tbody-admin">
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <th:block th:each="i: ${#numbers.sequence(1, pages)}">
+                        <li class="page-item"><a class="page-link text-warning" th:href="@{/admin/products(page=${i})}"  th:text="${i}"></a></li>
+                    </th:block>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- slider_area_end -->
+
+<footer class="footer">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-md-6 col-lg-5">
+                    <div class="footer_widget text-center">
+                        <h3 class="footer_title" th:text="#{footer.mission}">
+                        </h3>
+                        <p th:text="#{about.body}"></p>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 col-lg-3">
+                    <div class="footer_widget text-center">
+                        <h3 class="footer_title" th:text="#{footer.head}">
+                        </h3>
+                        <ul>
+                            <li><a href="/" th:text="#{footer.home}"></a></li>
+                            <li><a href="/info/about" th:text="#{footer.about}"></a></li>
+                            <li><a href="/info/recipes" th:text="#{footer.recipes}"></a></li>
+                            <li><a href="/user/meals" th:text="#{footer.personal.info}"></a></li>
+                            <li><a href="/user/contact" th:text="#{footer.contact}"></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-lg-4">
+                    <div class="footer_widget">
+                        <h3 class="footer_title" th:text="#{footer.subscribe}">
+                        </h3>
+                        <p class="newsletter_text" th:text="#{footer.subtext}"></p>
+                        <form action="#" class="newsletter_form">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit"> <i class="ti-arrow-right"></i> </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copy-right_text">
+        <div class="container">
+            <div class="footer_border"></div>
+            <div class="row align-items-center">
+                <div class="col-xl-8 col-md-8">
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="socail_links">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="ti-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="ti-twitter-alt"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-behance"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Modal Add-->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" th:text="#{ml.add.new.food}"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="fr-add" action="/user/product" method="POST">
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name" class="col-form-label" th:text="#{ml.name}+':'"></label>
+                        <input type="text" class="form-control" id="name" name="name">
+                        <p class="invalid-p"></p>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="calories" class="col-form-label" th:text="#{ml.calories}+':'"></label>
+                                <input type="text" class="form-control" id="calories" name="calories">
+                                <p class="invalid-p"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="protein" class="col-form-label" th:text="#{ml.protein}+':'"></label>
+                                <input type="text" class="form-control" id="protein" name="protein">
+                                <p class="invalid-p"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="fats" class="col-form-label" th:text="#{ml.fats}+':'"></label>
+                                <input type="text" class="form-control" id="fats" name="fats">
+                                <p class="invalid-p"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="carbohydrates" class="col-form-label" th:text="#{ml.carbohydrates}+':'"></label>
+                                <input type="text" class="form-control" id="carbohydrates" name="carbohydrates">
+                                <p class="invalid-p"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="privateCheck" name="public">
+                                <label class="form-check-label" for="privateCheck" th:text="#{ml.public}"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{ml.btn.close}"></button>
+                    <button type="submit" class="btn btn-warning add-sbm" th:text="#{ml.btn.add.food}"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="ed_exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ed_exampleModalLabel" th:text="#{pr.edit.food}"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="fr-edit" action="/admin/product/edit" method="POST">
+
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="ed_id" name="id" hidden>
+                    <div class="form-group">
+                        <label for="ed_name" class="col-form-label" th:text="#{ml.name}+':'"></label>
+                        <input type="text" class="form-control" id="ed_name" name="name">
+                        <p class="invalid-p"></p>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ed_calories" class="col-form-label" th:text="#{ml.calories}+':'"></label>
+                                <input type="text" class="form-control" id="ed_calories" name="calories">
+                                <p class="invalid-p"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ed_protein" class="col-form-label" th:text="#{ml.protein}+':'"></label>
+                                <input type="text" class="form-control" id="ed_protein" name="protein">
+                                <p class="invalid-p"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ed_fats" class="col-form-label" th:text="#{ml.fats}+':'"></label>
+                                <input type="text" class="form-control" id="ed_fats" name="fats">
+                                <p class="invalid-p"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ed_carbohydrates" class="col-form-label" th:text="#{ml.carbohydrates}+':'"></label>
+                                <input type="text" class="form-control" id="ed_carbohydrates" name="carbohydrates">
+                                <p class="invalid-p"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="ed_privateCheck" name="public">
+                                <label class="form-check-label" for="ed_privateCheck" th:text="#{ml.public}+':'"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{ml.btn.close}"></button>
+                    <button type="submit" class="btn btn-warning edit-sbm" th:text="#{pr.edit}"></button>
+                    <button type="button" class="btn btn-danger" th:text="#{ml.btn.delete}"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<p hidden id="error_name" th:text="#{enter.error.name}"></p>
+<p hidden id="error_cal" th:text="#{enter.error.cal}"></p>
+<p hidden id="error_nutr" th:text="#{enter.error.nutr}"></p>
+<p hidden id="error_num" th:text="#{enter.error.num}"></p>
+<p hidden id="error_empty" th:text="#{enter.empty}"></p>
+<!-- JS here -->
+<script src="/static/js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="/static/js/popper.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/isotope.pkgd.min.js"></script>
+<script src="/static/js/ajax-form.js"></script>
+<script src="/static/js/waypoints.min.js"></script>
+<script src="/static/js/jquery.counterup.min.js"></script>
+<script src="/static/js/imagesloaded.pkgd.min.js"></script>
+<script src="/static/js/scrollIt.js"></script>
+<script src="/static/js/jquery.scrollUp.min.js"></script>
+<script src="/static/js/wow.min.js"></script>
+<script src="/static/js/nice-select.min.js"></script>
+<script src="/static/js/jquery.slicknav.min.js"></script>
+<script src="/static/js/jquery.magnific-popup.min.js"></script>
+<script src="/static/js/plugins.js"></script>
+<script src="/static/js/gijgo.min.js"></script>
+
+<!--contact js-->
+<script src="/static/js/contact.js"></script>
+<script src="/static/js/jquery.ajaxchimp.min.js"></script>
+<script src="/static/js/jquery.form.js"></script>
+<script src="/static/js/jquery.validate.min.js"></script>
+<script src="/static/js/mail-script.js"></script>
+
+<script src="/static/js/main.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $.get("/get_client_info", function (data) {
+            if (data == '') {
+                $.get("/is_login", function (login) {
+                    if (login == true) {
+                        $('li[name ="user"]').children("a").text("user");
+                        $('li[name ="user"]').removeAttr('hidden');
+                    } else {
+                        $('li[name ="sign"]').removeAttr('hidden');
+                    }
+                })
+            } else {
+                $('li[name ="user"]').children("a").text(data.name);
+                $('li[name ="user"]').removeAttr('hidden');
+            }
+            $.get("/is_admin", function (admin) {
+                if (admin == true) {
+                    $('li[name ="admin"]').removeAttr('hidden');
+                }
+            })
+        });
+        var url = window.location.href;
+        var params = url.split('?')[1] == undefined?"":url.split('?')[1];
+        if(params.length!=0)
+            params = "?"+params;
+        $.get("/get_admin_products"+params, function (data) {
+            var html_result = '';
+            $.each( data, function( key, val ) {
+                html_result += '<tr class="item" id="'+val.id+'" data-public="'+val.common+'">' +
+                    '<td id="item-name">'+val.name+'</td>' +
+                    '<td id="item-calories">'+val.calories+'</td>' +
+                    '<td id="item-protein">'+val.protein+'</td>' +
+                    '<td id="item-fats">'+val.fats+'</td>' +
+                    '<td id="item-carbohydrates">'+val.carbohydrates+'</td></tr>';
+            })
+            $('.tbody-admin')
+                .append(html_result);
+        });
+    });
+</script>
+
+
+<script src="/static/js/meals.js"></script>
+<script src="/static/js/admin_product.js"></script>
+<script src="/static/js/validator.js"></script>
+<script src="/static/js/message.js"></script>
+
+</body>
+
+</html>

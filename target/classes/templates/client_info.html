@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Eat&Fit</title>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/static/css/client_info_registration.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/themify-icons.css">
+    <link rel="stylesheet" href="/static/css/nice-select.css">
+    <link rel="stylesheet" href="/static/css/flaticon.css">
+    <link rel="stylesheet" href="/static/css/gijgo.css">
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/slick.css">
+    <link rel="stylesheet" href="/static/css/slicknav.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/first_registration.css">
+    <link rel="stylesheet" href="/static/css/message.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<header>
+    <div class="header-area ">
+        <div id="sticky-header" class="main-header-area progress-sticky">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-2">
+                        <div class="logo">
+                            <a href="/">
+                                <img class="main-header-logo" src="/static/img/logo_new.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-7">
+                        <div class="main-menu   d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="/" th:text="#{nav.home}">Home</a></li>
+                                    <li><a href="/info/about" th:text="#{nav.about}">About</a></li>
+                                    <li><a href="/info/recipes" th:text="#{nav.recipes}">Recipes</a></li>
+                                    <li hidden name="sign"><a href="/sign/up" th:text="#{nav.sign}">Sign</a></li>
+                                    <li hidden name="user"><a href="#">user<i class="ti-angle-down"></i></a>
+                                        <ul class="submenu">
+                                            <li hidden name="admin"><a href="/admin/products" th:text="#{nav.admin.page}">Admin Page</a></li>
+                                            <li><a href="/user/meals" th:text="#{nav.daily.eating}">Daily Eating</a></li>
+                                            <li><a href="/user/progress" th:text="#{nav.progress}">Progress</a></li>
+                                            <li><a href="/user/water" th:text="#{nav.water}">Water</a></li>
+                                            <li><a href="/user/activity" th:text="#{nav.activity}">Activity</a></li>
+                                            <li><a href="/client/edit" th:text="#{nav.edit}">Edit</a></li>
+                                            <li><a href="/sign/out" th:text="#{nav.logout}">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/info/contact" th:text="#{nav.contact}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                        <div class="search_icon" th:if="${#locale.toString() == 'ru_RU'}">
+                            <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
+                                <i>EN</i>
+                            </a>
+                        </div>
+                        <div class="search_icon" th:if="${#locale.toString() == 'en_US'}">
+                            <a th:href="@{${#httpServletRequest.requestURI}(lang='ru_RU')}">
+                                <i>UA</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- slider_area_start -->
+<div class="slider_area">
+    <div class="single_slider align-items-center slider_bg_3">
+        <div class="container mscontainer">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xl-6 ">
+                    <div class="slider_text text-center">
+                        <form id="msform" action="/client/info" method="POST">
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active" th:text="#{cl.person.details}"></li>
+                                <li th:text="#{cl.param}"></li>
+                                <li th:text="#{cl.nutr.goal}"></li>
+                            </ul>
+                            <!-- fieldsets -->
+                            <fieldset>
+                                <h1 class="rg-h1-cl" th:text="#{cl.person.details}">Personal Details</h1>
+                                <h1 class="fs-subtitle" th:text="#{cl.label.tell}">Tell us something more about you</h1>
+
+                                <div class="rg-field-wrap">
+                                    <label class="rg-label" th:text="#{cl.label.name}">
+                                        <span class="req rg-span">*</span>
+                                    </label>
+                                    <input class="rg-input" type="text" name="name" required autocomplete="off"/>
+                                    <p class="invalid-p"></p>
+                                </div>
+                                <div class="rg-field-wrap">
+                                    <label class="rg-label" th:text="#{cl.label.age}">
+                                        <span class="req rg-span">*</span>
+                                    </label>
+                                    <input class="rg-input" type="text" name="age" required autocomplete="off"/>
+                                    <p class="invalid-p"></p>
+                                </div>
+                                <div class="rg-field-wrap">
+                                    <label class="rg-label" th:text="#{cl.label.gender}">
+                                        <span class="req rg-span">*</span>
+                                    </label>
+                                    <select class="rg-select" name="gender">
+                                        <option style="display:none">
+                                    </select>
+                                    <p class="invalid-p"></p>
+                                </div>
+
+                                <button type="button" name="next" class="next rg-button rg-button-block" th:text="#{cl.button.next}">
+                                    </button>
+                            </fieldset>
+                            <fieldset>
+                                <h1 class="rg-h1-cl" th:text="#{cl.param}"></h1>
+                                <h1 class="fs-subtitle" th:text="#{cl.label.tell}"></h1>
+                                <div class="rg-field-wrap">
+                                    <label class="rg-label" th:text="#{cl.label.height}">
+                                        <span class="req rg-span">*</span>
+                                    </label>
+                                    <input class="rg-input" type="number" name="height" required autocomplete="off"/>
+                                    <p class="invalid-p"></p>
+                                </div>
+                                <div class="rg-field-wrap">
+                                    <label class="rg-label" th:text="#{cl.label.weight}">
+                                        <span class="req rg-span">*</span>
+                                    </label>
+                                    <input class="rg-input" type="number" name="weight" required autocomplete="off"/>
+                                    <p class="invalid-p"></p>
+                                </div>
+                                <div class="rg-field-wrap">
+                                    <label class="rg-label" th:text="#{cl.label.activity}">
+                                        <span class="req rg-span">*</span>
+                                    </label>
+                                    <select class="rg-select" name="activity">
+                                        <option style="display:none">
+
+                                    </select>
+                                    <p class="invalid-p"></p>
+                                </div>
+                                <!--<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>-->
+                                <button type="button" name="previous" class="previous rg-button rg-button-block-other" th:text="#{cl.button.previous}">
+                                    </button>
+                                <button type="button" name="next" class="next rg-button rg-button-block-other" th:text="#{cl.button.next}">
+                                    </button>
+                            </fieldset>
+                            <fieldset>
+                                <h1 class="rg-h1-cl" th:text="#{cl.nutr.goal}"></h1>
+                                <h1 class="fs-subtitle" th:text="#{cl.label.tell}"></h1>
+                                <div class="rg-field-wrap">
+                                    <label class="rg-label" th:text="#{cl.label.nutr.goal}">
+                                        <span class="req rg-span">*</span>
+                                    </label>
+                                    <select class="rg-select" name="nutr_goal">
+                                        <option style="display:none">
+                                    </select>
+                                    <p class="invalid-p"></p>
+                                </div>
+                                <button type="button" name="previous" class="previous rg-button rg-button-block-other" th:text="#{cl.button.previous}">
+                                    </button>
+                                <button type="submit" name="submit" class="submit rg-button rg-button-block-other" th:text="#{cl.button.submit}">
+                                    </button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- slider_area_end -->
+
+<footer class="footer">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-md-6 col-lg-5">
+                    <div class="footer_widget text-center">
+                        <h3 class="footer_title" th:text="#{footer.mission}">
+                        </h3>
+                        <p th:text="#{about.body}"></p>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 col-lg-3">
+                    <div class="footer_widget text-center">
+                        <h3 class="footer_title" th:text="#{footer.head}">
+                        </h3>
+                        <ul>
+                            <li><a href="/" th:text="#{footer.home}"></a></li>
+                            <li><a href="/info/about" th:text="#{footer.about}"></a></li>
+                            <li><a href="/info/recipes" th:text="#{footer.recipes}"></a></li>
+                            <li><a href="/user/meals" th:text="#{footer.personal.info}"></a></li>
+                            <li><a href="/user/contact" th:text="#{footer.contact}"></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-lg-4">
+                    <div class="footer_widget">
+                        <h3 class="footer_title" th:text="#{footer.subscribe}">
+                        </h3>
+                        <p class="newsletter_text" th:text="#{footer.subtext}"></p>
+                        <form action="#" class="newsletter_form">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit"> <i class="ti-arrow-right"></i> </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copy-right_text">
+        <div class="container">
+            <div class="footer_border"></div>
+            <div class="row align-items-center">
+                <div class="col-xl-8 col-md-8">
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="socail_links">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="ti-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="ti-twitter-alt"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-behance"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<p hidden id="error_name" th:text="#{enter.error.name}"></p>
+<p hidden id="error_num" th:text="#{enter.error.num}"></p>
+<p hidden id="error_age" th:text="#{enter.error.age}"></p>
+<p hidden id="error_height" th:text="#{enter.error.height}"></p>
+<p hidden id="error_weight" th:text="#{enter.error.weight}"></p>
+<p hidden id="error_empty" th:text="#{enter.empty}"></p>
+
+<!-- JS here -->
+<script src="/static/js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="/static/js/popper.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/isotope.pkgd.min.js"></script>
+<script src="/static/js/ajax-form.js"></script>
+<script src="/static/js/waypoints.min.js"></script>
+<script src="/static/js/jquery.counterup.min.js"></script>
+<script src="/static/js/imagesloaded.pkgd.min.js"></script>
+<script src="/static/js/scrollIt.js"></script>
+<script src="/static/js/jquery.scrollUp.min.js"></script>
+<script src="/static/js/wow.min.js"></script>
+<script src="/static/js/nice-select.min.js"></script>
+<script src="/static/js/jquery.slicknav.min.js"></script>
+<script src="/static/js/jquery.magnific-popup.min.js"></script>
+<script src="/static/js/plugins.js"></script>
+<script src="/static/js/gijgo.min.js"></script>
+
+<!--contact js-->
+<script src="/static/js/jquery.ajaxchimp.min.js"></script>
+<script src="/static/js/jquery.form.js"></script>
+<script src="/static/js/jquery.validate.min.js"></script>
+<script src="/static/js/mail-script.js"></script>
+
+<script src="/static/js/main.js"></script>
+
+<!--form js-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/static/js/jquery.easing.1.3.js"></script>
+<script src="/static/js/validator.js"></script>
+<script src="/static/js/client_info_registration.js"></script>
+<script src="/static/js/first_registration.js"></script>
+<script src="/static/js/message.js"></script>
+<script src="/static/js/loadClientInfo.js"></script>]
+<script src="/static/js/loadClient.js"></script>
+</body>
+</html>

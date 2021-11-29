@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Eat&Fit</title>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/themify-icons.css">
+    <link rel="stylesheet" href="/static/css/nice-select.css">
+    <link rel="stylesheet" href="/static/css/flaticon.css">
+    <link rel="stylesheet" href="/static/css/gijgo.css">
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/slick.css">
+    <link rel="stylesheet" href="/static/css/slicknav.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/loadClient.js"></script>
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area progress-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-2">
+                            <div class="logo">
+                                <a href="/">
+                                    <img class="main-header-logo" src="/static/img/logo_new.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="main-menu   d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="/" th:text="#{nav.home}">Home</a></li>
+                                        <li><a href="/info/about" th:text="#{nav.about}">About</a></li>
+                                        <li><a href="/info/recipes" th:text="#{nav.recipes}">Recipes</a></li>
+                                        <li hidden name="sign"><a href="/sign/up" th:text="#{nav.sign}">Sign</a></li>
+                                        <li hidden name="user"><a href="#">user<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li hidden name="admin"><a href="/admin/products" th:text="#{nav.admin.page}">Admin Page</a></li>
+                                                <li><a href="/user/meals" th:text="#{nav.daily.eating}">Daily Eating</a></li>
+                                                <li><a href="/user/progress" th:text="#{nav.progress}">Progress</a></li>
+                                                <li><a href="/user/water" th:text="#{nav.water}">Water</a></li>
+                                                <li><a href="/user/activity" th:text="#{nav.activity}">Activity</a></li>
+                                                <li><a href="/client/edit" th:text="#{nav.edit}">Edit</a></li>
+                                                <li><a href="/sign/out" th:text="#{nav.logout}">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="/info/contact" th:text="#{nav.contact}">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                            <div class="search_icon" th:if="${#locale.toString() == 'ru_RU'}">
+                                <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
+                                    <i>EN</i>
+                                </a>
+                            </div>
+                            <div class="search_icon" th:if="${#locale.toString() == 'en_US'}">
+                                <a th:href="@{${#httpServletRequest.requestURI}(lang='ru_RU')}">
+                                    <i>UA</i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+  <!-- ================ contact section start ================= -->
+  <section class="contact-section section_padding">
+    <div class="container">
+        <div style="min-height: 65vh;">
+            <div class="container">
+                <h1 class="text-center contact-h">Contact Address</h1><br>
+                <div class="row text-center">
+                    <div class="col-sm-3 col-xs-6 first-box">
+                        <h1><i class="fas fa-phone fa-2x"></i></h1>
+                        <h3>Phone</h3>
+                        <p>+380-669-216-422</p><br>
+                    </div>
+                    <div class="col-sm-3 col-xs-6 second-box">
+                        <h1><i class="fas fa-home fa-2x"></i></h1>
+                        <h3>Location</h3>
+                        <p>Ukraine, Kiev</p><br>
+                    </div>
+                    <div class="col-sm-3 col-xs-6 third-box">
+                        <h1><i class="far fa-envelope fa-2x"></i></h1>
+                        <h3>E-mail</h3>
+                        <p>eat.and.fit.system@gmail.com</p><br>
+                    </div>
+                    <div class="col-sm-3 col-xs-6 fourth-box">
+                        <h1><i class="fab fa-envira fa-2x"></i></h1>
+                        <h3>Web</h3>
+                        <p>eatandfit.herokuapp.com</p><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  <!-- ================ contact section end ================= -->
+
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-md-6 col-lg-5">
+                        <div class="footer_widget text-center">
+                            <h3 class="footer_title" th:text="#{footer.mission}">
+                            </h3>
+                            <p th:text="#{about.body}"></p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget text-center">
+                            <h3 class="footer_title" th:text="#{footer.head}">
+                            </h3>
+                            <ul>
+                                <li><a href="/" th:text="#{footer.home}"></a></li>
+                                <li><a href="/info/about" th:text="#{footer.about}"></a></li>
+                                <li><a href="/info/recipes" th:text="#{footer.recipes}"></a></li>
+                                <li><a href="/user/meals" th:text="#{footer.personal.info}"></a></li>
+                                <li><a href="/user/contact" th:text="#{footer.contact}"></a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-lg-4">
+                        <div class="footer_widget">
+                            <h3 class="footer_title" th:text="#{footer.subscribe}">
+                            </h3>
+                            <p class="newsletter_text" th:text="#{footer.subtext}"></p>
+                            <form action="#" class="newsletter_form">
+                                <input type="text" placeholder="Enter your mail">
+                                <button type="submit"> <i class="ti-arrow-right"></i> </button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row align-items-center">
+                    <div class="col-xl-8 col-md-8">
+                    </div>
+                    <div class="col-xl-4 col-md-4">
+                        <div class="socail_links">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-twitter-alt"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-dribbble"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-behance"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS here -->
+    <script src="/static/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/isotope.pkgd.min.js"></script>
+    <script src="/static/js/ajax-form.js"></script>
+    <script src="/static/js/waypoints.min.js"></script>
+    <script src="/static/js/jquery.counterup.min.js"></script>
+    <script src="/static/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/static/js/scrollIt.js"></script>
+    <script src="/static/js/jquery.scrollUp.min.js"></script>
+    <script src="/static/js/wow.min.js"></script>
+    <script src="/static/js/nice-select.min.js"></script>
+    <script src="/static/js/jquery.slicknav.min.js"></script>
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/js/plugins.js"></script>
+    <script src="/static/js/gijgo.min.js"></script>
+
+    <!--contact js-->
+    <script src="/static/js/contact.js"></script>
+    <script src="/static/js/jquery.ajaxchimp.min.js"></script>
+    <script src="/static/js/jquery.form.js"></script>
+    <script src="/static/js/jquery.validate.min.js"></script>
+    <script src="/static/js/mail-script.js"></script>
+
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>

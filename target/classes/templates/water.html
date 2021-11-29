@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Eat&Fit</title>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/themify-icons.css">
+    <link rel="stylesheet" href="/static/css/nice-select.css">
+    <link rel="stylesheet" href="/static/css/flaticon.css">
+    <link rel="stylesheet" href="/static/css/gijgo.css">
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/slick.css">
+    <link rel="stylesheet" href="/static/css/slicknav.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/diagram.css">
+    <link rel="stylesheet" href="/static/css/water.css">
+    <script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/loadClient.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var water_percentage_neg = [[${water_percentage_neg}]];
+            var water = document.getElementById('water');
+            water.style.transform = 'translate(0, ' + water_percentage_neg + '%)';
+        });
+    </script>
+    <style>
+        .footer .footer_top {
+            padding-top: 200px;
+        }
+    </style>
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<header>
+    <div class="header-area ">
+        <div id="sticky-header" class="main-header-area progress-sticky">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-2">
+                        <div class="logo">
+                            <a href="/">
+                                <img class="main-header-logo" src="/static/img/logo_new.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-7">
+                        <div class="main-menu   d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="/" th:text="#{nav.home}">Home</a></li>
+                                    <li><a href="/info/about" th:text="#{nav.about}">About</a></li>
+                                    <li><a href="/info/recipes" th:text="#{nav.recipes}">Recipes</a></li>
+                                    <li hidden name="sign"><a href="/sign/up" th:text="#{nav.sign}">Sign</a></li>
+                                    <li hidden name="user"><a href="#">user<i class="ti-angle-down"></i></a>
+                                        <ul class="submenu">
+                                            <li hidden name="admin"><a href="/admin/products" th:text="#{nav.admin.page}">Admin Page</a></li>
+                                            <li><a href="/user/meals" th:text="#{nav.daily.eating}">Daily Eating</a></li>
+                                            <li><a href="/user/progress" th:text="#{nav.progress}">Progress</a></li>
+                                            <li><a href="/user/water" th:text="#{nav.water}">Water</a></li>
+                                            <li><a href="/user/activity" th:text="#{nav.activity}">Activity</a></li>
+                                            <li><a href="/client/edit" th:text="#{nav.edit}">Edit</a></li>
+                                            <li><a href="/sign/out" th:text="#{nav.logout}">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/info/contact" th:text="#{nav.contact}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                        <div class="search_icon" th:if="${#locale.toString() == 'ru_RU'}">
+                            <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
+                                <i>EN</i>
+                            </a>
+                        </div>
+                        <div class="search_icon" th:if="${#locale.toString() == 'en_US'}">
+                            <a th:href="@{${#httpServletRequest.requestURI}(lang='ru_RU')}">
+                                <i>UA</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- slider_area_start -->
+<div class="slider_area">
+    <div class="container">
+        <div class="all-back">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                 y="0px"
+                 style="display: none;">
+                <symbol id="wave">
+                    <path d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H420z"></path>
+                    <path d="M420,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C326,6.5,322,4.7,311.5,2.7C304.3,1.4,293.6-0.1,280,0c0,0,0,0,0,0v20H420z"></path>
+                    <path d="M140,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C234,6.5,238,4.7,248.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H140z"></path>
+                    <path d="M140,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C46,6.5,42,4.7,31.5,2.7C24.3,1.4,13.6-0.1,0,0c0,0,0,0,0,0l0,20H140z"></path>
+                </symbol>
+            </svg>
+            <div class="page" id="page">
+                <div class="percent">
+                    <div class="percent__inner">
+                        <div class="percent__num" id="count" th:utext="${water_percentage}"></div>
+                        <div class="percent__sign">%</div>
+                        <br/>
+                        <div class="percent__sign" id="count_num" th:utext="${curr_water} + ' / ' + ${max_water}"></div>
+                    </div>
+                </div>
+                <button class="button" id="button">Drink a cup</button>
+                <div class="water trans" id="water">
+                    <svg class="water__wave water__wave_back" viewBox="0 0 560 20">
+                        <use xlink:href="#wave"></use>
+                    </svg>
+                    <svg class="water__wave water__wave_front" viewBox="0 0 560 20">
+                        <use xlink:href="#wave"></use>
+                    </svg>
+                    <div class="water__inner">
+                        <div class="bubble bubble_1"></div>
+                        <div class="bubble bubble_2"></div>
+                        <div class="bubble bubble_3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- slider_area_end -->
+
+<footer class="footer">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-md-6 col-lg-5">
+                    <div class="footer_widget text-center">
+                        <h3 class="footer_title" th:text="#{footer.mission}">
+                        </h3>
+                        <p th:text="#{about.body}"></p>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 col-lg-3">
+                    <div class="footer_widget text-center">
+                        <h3 class="footer_title" th:text="#{footer.head}">
+                        </h3>
+                        <ul>
+                            <li><a href="/" th:text="#{footer.home}"></a></li>
+                            <li><a href="/info/about" th:text="#{footer.about}"></a></li>
+                            <li><a href="/info/recipes" th:text="#{footer.recipes}"></a></li>
+                            <li><a href="/user/meals" th:text="#{footer.personal.info}"></a></li>
+                            <li><a href="/user/contact" th:text="#{footer.contact}"></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-lg-4">
+                    <div class="footer_widget">
+                        <h3 class="footer_title" th:text="#{footer.subscribe}">
+                        </h3>
+                        <p class="newsletter_text" th:text="#{footer.subtext}"></p>
+                        <form action="#" class="newsletter_form">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit"> <i class="ti-arrow-right"></i> </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copy-right_text">
+        <div class="container">
+            <div class="footer_border"></div>
+            <div class="row align-items-center">
+                <div class="col-xl-8 col-md-8">
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="socail_links">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="ti-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="ti-twitter-alt"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-behance"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JS here -->
+<script src="/static/js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="/static/js/popper.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/isotope.pkgd.min.js"></script>
+<script src="/static/js/ajax-form.js"></script>
+<script src="/static/js/waypoints.min.js"></script>
+<script src="/static/js/jquery.counterup.min.js"></script>
+<script src="/static/js/imagesloaded.pkgd.min.js"></script>
+<script src="/static/js/scrollIt.js"></script>
+<script src="/static/js/jquery.scrollUp.min.js"></script>
+<script src="/static/js/wow.min.js"></script>
+<script src="/static/js/nice-select.min.js"></script>
+<script src="/static/js/jquery.slicknav.min.js"></script>
+<script src="/static/js/jquery.magnific-popup.min.js"></script>
+<script src="/static/js/plugins.js"></script>
+<script src="/static/js/gijgo.min.js"></script>
+
+<!--contact js-->
+<script src="/static/js/contact.js"></script>
+<script src="/static/js/jquery.ajaxchimp.min.js"></script>
+<script src="/static/js/jquery.form.js"></script>
+<script src="/static/js/jquery.validate.min.js"></script>
+<script src="/static/js/mail-script.js"></script>
+
+<script src="/static/js/main.js"></script>
+<script>
+    var btn = document.getElementById('button'),
+        page = document.getElementById('page'),
+        water = document.getElementById('water'),
+        cnt = document.getElementById('count'),
+        percent = cnt.innerHTML,
+        random, diff, interval, isInProgress;
+
+    btn.addEventListener('click', update);
+
+    function update() {
+
+        if (isInProgress) return;
+        btn.removeEventListener('click', update);
+        isInProgress = true;
+
+        $.ajax({
+            type: 'POST',
+            url: '/user/add/water',
+            contentType: 'application/json; charset=utf-8',
+            data: '{}',
+            cache: false,
+            success: function (data) {
+                var obj = JSON.parse(data);
+
+                var curr_water = obj.curr_water;
+                var max_water = obj.max_water;
+                var curr_percentage = obj.curr_percentage;
+                console.log("curr_percentage: " + curr_percentage);
+                var percentage_diff = obj.percentage_diff;
+
+                page.classList.add('page_animated');
+                setTimeout(function () {
+                    page.classList.remove('page_animated');
+                }, 1000);
+
+                diff = percentage_diff;
+
+
+                window.document.getElementById("count_num").innerText = curr_water + " / " + max_water;
+
+                interval = setInterval(function () {
+
+                    if (diff === 0 || percent === 100) {
+                        btn.addEventListener('click', update);
+                        clearInterval(interval);
+                        isInProgress = false;
+                        return;
+                    }
+
+                    percent++;
+                    console.log(percent);
+
+                    cnt.innerHTML = percent;
+                    water.style.transform = 'translate(0, ' + (100 - percent) + '%)';
+                    water.querySelector('.water__inner').style.height = percent + '%';
+                    diff--;
+                    console.log(diff);
+
+                    isInProgress = false;
+                }, 16);
+            }
+        });
+    }
+
+</script>
+</body>
+
+</html>
